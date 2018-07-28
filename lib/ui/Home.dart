@@ -18,22 +18,22 @@ class _HomePageState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    this._getUserApi();
+    _getUserApi();
   }
 
-  Future<String> _getUserApi() async {
+  Future<Null> _getUserApi() async {
     var response = await http.get(apiUrl);
-    print(response.body);
-    setState(() {
-      if (response.statusCode == 200) {
-        var jsonData = json.decode(response.body);
-        NewsResponse newsResponse = jsonData;
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      NewsResponse newsResponse = NewsResponse.fromJson(jsonData);
+      setState(() {
         news = newsResponse.news;
-      } else {
-        throw Exception('Failed to load news');
-      }
-    });
-    return "Success";
+        print("News list size is: ${news.length}");
+      });
+      return null;
+    } else {
+      throw Exception('Failed to load news');
+    }
   }
 
   @override
@@ -49,28 +49,43 @@ class _HomePageState extends State<Home> {
   }
 
   Widget makeBody(BuildContext context) => RefreshIndicator(
-        child: makeListView(context),
+        child: Container(
+          margin: EdgeInsets.all(16.0),
+          child: makeGridView(context),
+        ),
         onRefresh: _getUserApi,
       );
 
-  Widget makeListView(BuildContext context) => ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: news?.length,
-        itemBuilder: (BuildContext context, int position) {
-          return makeCard(context, position);
-        },
-      );
+  Widget makeGridView(BuildContext context) => GridView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 16.0,
+        crossAxisSpacing: 16.0,
+        childAspectRatio: 0.75,
+      ),
+      itemCount: news?.length,
+      itemBuilder: (BuildContext context, int position) {
+        return makeCard(context, position);
+      });
 
   Widget makeCard(BuildContext context, int position) => Card(
-        elevation: 8.0,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-          child: makeListTile(context, position),
+          decoration: BoxDecoration(color: Colors.cyan),
+          child: makeGridTile(context, position),
         ),
       );
 
-  Widget makeListTile(BuildContext context, int position) => ListTile(
-        title: Text('${news[position].name}'),
+  Widget makeGridTile(BuildContext context, int position) => GridTile(
+        child: GridTileBar(
+          title: Text(
+            '${news[position].name}',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+            ),
+          ),
+        ),
       );
 }
