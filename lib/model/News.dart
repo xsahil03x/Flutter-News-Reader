@@ -1,12 +1,13 @@
 class News {
-  String author;
-  String title;
+  String country;
+  String name;
   String description;
+  String language;
+  String id;
+  String category;
   String url;
-  String urlToImage;
-  String publishedAt;
 
-  News(this.author, this.title, this.description, this.url, this.urlToImage,
-      this.publishedAt);
+  News(this.country, this.name, this.description, this.language, this.id,
+      this.category, this.url);
 
 }
