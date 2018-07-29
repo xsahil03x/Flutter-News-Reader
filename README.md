@@ -12,7 +12,7 @@
 
 | Channel Screen | Article Screen |
 | ------------------ | ------------------ |
-| <img src="./screenshot/movie_list.png" height="400" alt="Screenshot"/>  | <img src="./screenshot/movie_detail.png" height="400" alt="Screenshot"/>  |
+| <img src="https://user-images.githubusercontent.com/25670178/43371973-2ac0bd66-93b9-11e8-92f7-2c81c5632d8c.png" height="400" alt="Screenshot"/>  | <img src="https://user-images.githubusercontent.com/25670178/43371978-3f26550e-93b9-11e8-965b-34378fe7ae97.png" height="400" alt="Screenshot"/>  |
 
 ## What's next?
 
