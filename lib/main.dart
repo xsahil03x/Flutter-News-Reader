@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_reader/ui/Home.dart';
+import 'package:news_reader/ui/home/Home.dart';
 
 void main() async {
   runApp(MaterialApp(
