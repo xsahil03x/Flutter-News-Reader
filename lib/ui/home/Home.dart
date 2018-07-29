@@ -47,9 +47,13 @@ class _HomePageState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News Reader"),
+        elevation: 0.0,
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        title: Text(
+          "News Reader",
+          style: TextStyle(fontSize: 36.0,fontWeight: FontWeight.values[8],color: Colors.green),
+        ),
+        backgroundColor: Colors.black87,
       ),
       body: makeBody(context),
     );
@@ -57,16 +61,15 @@ class _HomePageState extends State<Home> {
 
   Widget makeBody(BuildContext context) => RefreshIndicator(
         child: Container(
-          color: Theme.Colors.planetPageBackground,
+          color: Colors.black87,
           child: makeGridView(context),
         ),
         onRefresh: _getNewsApi,
       );
 
-  Widget makeGridView(BuildContext context) => Padding(
-        padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+  Widget makeGridView(BuildContext context) => Container(
+        padding: EdgeInsets.only(top: 16.0, bottom: 16.0,right: 2.0,left: 2.0),
         child: GridView.builder(
-            cacheExtent: news.length * 1.0,
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

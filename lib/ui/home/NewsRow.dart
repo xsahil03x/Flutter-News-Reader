@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:news_reader/Routes.dart';
 import 'package:news_reader/model/IconsResponse.dart';
 import 'package:news_reader/model/ChannelIcon.dart';
 import 'package:news_reader/model/News.dart';
+import 'package:news_reader/ui/detail/NewsDetailPage.dart';
 //import 'package:news_reader/Theme.dart' as Theme;
 
 class NewsRow extends StatefulWidget {
@@ -49,7 +48,7 @@ class _NewsRowState extends State<NewsRow> {
 
       return null;
     } else {
-      throw Exception('Failed to load news');
+      throw Exception('Failed to load icons');
     }
   }
 
@@ -58,12 +57,10 @@ class _NewsRowState extends State<NewsRow> {
     CircleAvatar channelLogo(var url) {
       try {
         return new CircleAvatar(
-          radius: 68.0,
           backgroundImage: new NetworkImage(icons[0].url),
         );
       } catch (Exception) {
         return new CircleAvatar(
-          radius: 70.0,
           child: new Icon(Icons.library_books),
         );
       }
@@ -73,7 +70,16 @@ class _NewsRowState extends State<NewsRow> {
         child: GridTile(
             child: Column(
       children: <Widget>[
-        channelLogo(news.url),
+        new Container(
+            child: channelLogo(news.url),
+            width: 140.0,
+            height: 140.0,
+            padding: const EdgeInsets.all(3.0),
+            // border width
+            decoration: new BoxDecoration(
+              color: Colors.white, // border color
+              shape: BoxShape.circle,
+            )),
         Padding(
           padding: const EdgeInsets.only(top: 16.0, right: 4.0, left: 4.0),
           child: Text(
@@ -89,7 +95,20 @@ class _NewsRowState extends State<NewsRow> {
         ),
       ],
     )));
-
-    return new Container(child: newsCard);
+    return new Container(
+      child: GestureDetector(
+        onTap: () {
+          if (news.id.toString().isNotEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      NewsDetailPage(id: news.id, channel: news.name)),
+            );
+          }
+        },
+        child: newsCard,
+      ),
+    );
   }
 }

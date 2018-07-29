@@ -27,37 +27,37 @@ class Dimens {
   static const planetHeight = 100.0;
 }
 
-//class TextStyles {
-//
-//  const TextStyles();
-//
-//  static const TextStyle appBarTitle = const TextStyle(
-//      color: Colors.appBarTitle,
-//      fontFamily: 'Poppins',
-//      fontWeight: FontWeight.w600,
-//      fontSize: 36.0
-//  );
-//
-//  static const TextStyle planetTitle = const TextStyle(
-//      color: Colors.planetTitle,
-//      fontFamily: 'Poppins',
-//      fontWeight: FontWeight.w600,
-//      fontSize: 24.0
-//  );
-//
-//  static const TextStyle planetLocation = const TextStyle(
-//      color: Colors.planetLocation,
-//      fontFamily: 'Poppins',
-//      fontWeight: FontWeight.w300,
-//      fontSize: 14.0
-//  );
-//
-//  static const TextStyle planetDistance = const TextStyle(
-//      color: Colors.planetDistance,
-//      fontFamily: 'Poppins',
-//      fontWeight: FontWeight.w300,
-//      fontSize: 12.0
-//  );
+class TextStyles {
+
+  const TextStyles();
+
+  static const TextStyle appBarTitle = const TextStyle(
+      color: Colors.appBarTitle,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+      fontSize: 36.0
+  );
+
+  static const TextStyle planetTitle = const TextStyle(
+      color: Colors.planetTitle,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600,
+      fontSize: 24.0
+  );
+
+  static const TextStyle planetLocation = const TextStyle(
+      color: Colors.planetLocation,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w300,
+      fontSize: 14.0
+  );
+
+  static const TextStyle planetDistance = const TextStyle(
+      color: Colors.planetDistance,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w300,
+      fontSize: 12.0
+  );
 
 
-//}
+}

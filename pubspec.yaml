@@ -9,7 +9,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   json_annotation: ^0.2.3
-  fluro: "^1.1.0"
+  fluro: ^1.1.0
+  flutter_webview_plugin: ^0.1.6
+  timeago: ^1.2.0
+
 
 dev_dependencies:
   flutter_test:
