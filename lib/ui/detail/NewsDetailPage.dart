@@ -4,18 +4,16 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:news_reader/model/Article.dart';
 import 'package:news_reader/model/ArticleResponse.dart';
-import 'package:news_reader/model/News.dart';
 import 'package:news_reader/ui/detail/ArticleRow.dart';
 
 class NewsDetailPage extends StatefulWidget {
-  //final News news;
   final String id;
   final String channel;
 
   const NewsDetailPage({Key key, this.id, this.channel}) : super(key: key);
 
   @override
-  _NewsDetailPageState createState() => _NewsDetailPageState(id,channel);
+  _NewsDetailPageState createState() => _NewsDetailPageState(id, channel);
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
@@ -59,13 +57,18 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(channelName),
-        backgroundColor: Colors.redAccent,
-      ),
-      body: makeBody(context),
-    );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Nunito'),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text(channelName,style: TextStyle(
+              fontWeight: FontWeight.bold
+            ),),
+            backgroundColor: Colors.teal,
+          ),
+          body: makeBody(context),
+        ));
   }
 
   Widget makeBody(BuildContext context) {

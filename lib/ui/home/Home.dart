@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:news_reader/Theme.dart' as Theme;
 import 'package:http/http.dart' as http;
 import 'package:news_reader/model/News.dart';
 import 'package:news_reader/model/NewsResponse.dart';
@@ -47,13 +46,16 @@ class _HomePageState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
         centerTitle: true,
         title: Text(
           "News Reader",
-          style: TextStyle(fontSize: 36.0,fontWeight: FontWeight.values[8],color: Colors.green),
+          style: TextStyle(
+            fontSize: 32.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.teal,
       ),
       body: makeBody(context),
     );
@@ -68,7 +70,8 @@ class _HomePageState extends State<Home> {
       );
 
   Widget makeGridView(BuildContext context) => Container(
-        padding: EdgeInsets.only(top: 16.0, bottom: 16.0,right: 2.0,left: 2.0),
+        padding:
+            EdgeInsets.only(top: 16.0, bottom: 16.0, right: 2.0, left: 2.0),
         child: GridView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,

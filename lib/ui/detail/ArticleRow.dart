@@ -1,19 +1,26 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:news_reader/Routes.dart';
 import 'package:news_reader/model/Article.dart';
+import 'package:news_reader/ui/NewsWebViewPage.dart';
 import 'package:timeago/timeago.dart';
-import 'package:news_reader/Theme.dart' as Theme;
 
 class ArticleRow extends StatelessWidget {
   final Article article;
-  final FlutterWebviewPlugin webViewPlugin = new FlutterWebviewPlugin();
+
   ArticleRow(this.article);
 
   @override
   Widget build(BuildContext context) {
+    String publishTime(var time) {
+      try {
+        return timeAgo(DateTime.parse(article.publishedAt));
+      } catch (Exception) {
+        return "a day ago";
+      }
+    }
+
     CircleAvatar articleImage(var url) {
       try {
         return new CircleAvatar(
@@ -44,7 +51,7 @@ class ArticleRow extends StatelessWidget {
     final articleCard = new Container(
       margin: const EdgeInsets.only(left: 60.0, right: 16.0),
       decoration: new BoxDecoration(
-        color: Theme.Colors.planetCard,
+        color: Colors.teal,
         shape: BoxShape.rectangle,
         borderRadius: new BorderRadius.circular(6.0),
         boxShadow: <BoxShadow>[
@@ -55,7 +62,7 @@ class ArticleRow extends StatelessWidget {
         ],
       ),
       child: new Container(
-        margin: const EdgeInsets.only(top: 16.0, left: 72.0),
+        margin: const EdgeInsets.only(top: 8.0, left: 68.0,right: 4.0,bottom: 8.0),
         constraints: new BoxConstraints.expand(),
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,22 +71,26 @@ class ArticleRow extends StatelessWidget {
               article.title,
               overflow: TextOverflow.ellipsis,
               maxLines: 3,
-              style: TextStyle(
+              style: TextStyle(color: Colors.white70,
+                fontWeight: FontWeight.w800,
                 fontSize: 16.0,
               ),
             ),
             new Container(
                 color: const Color(0xFF00C6FF),
-                width: 24.0,
+                width: 36.0,
                 height: 1.0,
                 margin: const EdgeInsets.symmetric(vertical: 8.0)),
             new Row(
               children: <Widget>[
-                new Icon(Icons.location_on,
-                    size: 14.0, color: Theme.Colors.planetDistance),
-                new Text(timeAgo(DateTime.parse(article.publishedAt)),
-                    style: Theme.TextStyles.planetDistance),
-                new Container(width: 24.0),
+                new Icon(Icons.access_time,
+                    size: 14.0, color: Colors.white70),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: new Text(publishTime(article.publishedAt),style: TextStyle(
+                    color: Colors.black87
+                  ),),
+                ),
               ],
             )
           ],
@@ -93,7 +104,12 @@ class ArticleRow extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (article.url.toString().isNotEmpty) {
-            webViewPlugin.launch(article.url);
+            //_navigateTo(context, article.url);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NewsWebViewPage(article.url)),
+            );
           }
         },
         child: Stack(
@@ -106,10 +122,10 @@ class ArticleRow extends StatelessWidget {
     );
   }
 
-//  _navigateTo(context, String id) {
+//  _navigateTo(context, String url) {
 //    Routes.navigateTo(
 //        context,
-//        '/ui/NewsWebViewPage/${article.url}',
+//        '/NewsWebViewPage/${url}',
 //        transition: TransitionType.fadeIn
 //    );
 //  }

@@ -6,7 +6,6 @@ import 'package:news_reader/model/IconsResponse.dart';
 import 'package:news_reader/model/ChannelIcon.dart';
 import 'package:news_reader/model/News.dart';
 import 'package:news_reader/ui/detail/NewsDetailPage.dart';
-//import 'package:news_reader/Theme.dart' as Theme;
 
 class NewsRow extends StatefulWidget {
   final News news;
@@ -57,7 +56,7 @@ class _NewsRowState extends State<NewsRow> {
     CircleAvatar channelLogo(var url) {
       try {
         return new CircleAvatar(
-          backgroundImage: new NetworkImage(icons[0].url),
+          backgroundImage: new NetworkImage(icons[1].url),
         );
       } catch (Exception) {
         return new CircleAvatar(
@@ -72,12 +71,12 @@ class _NewsRowState extends State<NewsRow> {
       children: <Widget>[
         new Container(
             child: channelLogo(news.url),
-            width: 140.0,
-            height: 140.0,
+            width: 130.0,
+            height: 130.0,
             padding: const EdgeInsets.all(3.0),
             // border width
             decoration: new BoxDecoration(
-              color: Colors.white, // border color
+              color: Colors.teal, // border color
               shape: BoxShape.circle,
             )),
         Padding(
