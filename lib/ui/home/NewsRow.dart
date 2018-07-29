@@ -69,18 +69,21 @@ class _NewsRowState extends State<NewsRow> {
         child: GridTile(
             child: Column(
       children: <Widget>[
-        new Container(
-            child: channelLogo(news.url),
-            width: 130.0,
-            height: 130.0,
-            padding: const EdgeInsets.all(3.0),
-            // border width
-            decoration: new BoxDecoration(
-              color: Colors.teal, // border color
-              shape: BoxShape.circle,
-            )),
         Padding(
-          padding: const EdgeInsets.only(top: 16.0, right: 4.0, left: 4.0),
+          padding: const EdgeInsets.only(top: 16.0),
+          child: new Container(
+              child: channelLogo(news.url),
+              width: 130.0,
+              height: 130.0,
+              padding: const EdgeInsets.all(3.0),
+              // border width
+              decoration: new BoxDecoration(
+                color: Colors.teal, // border color
+                shape: BoxShape.circle,
+              )),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0, right: 4.0, left: 4.0),
           child: Text(
             news.name,
             maxLines: 1,

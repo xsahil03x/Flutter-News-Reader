@@ -71,7 +71,7 @@ class _HomePageState extends State<Home> {
 
   Widget makeGridView(BuildContext context) => Container(
         padding:
-            EdgeInsets.only(top: 16.0, bottom: 16.0, right: 2.0, left: 2.0),
+            EdgeInsets.only(bottom: 4.0, right: 2.0, left: 2.0),
         child: GridView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,

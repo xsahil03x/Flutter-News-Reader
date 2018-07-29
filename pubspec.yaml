@@ -1,5 +1,5 @@
 name: news_reader
-description: A new Flutter project.
+description: A Flutter Project to Read Latest News.
 
 dependencies:
   flutter:
@@ -32,8 +32,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+  - assets/images/news_reader_icon.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -50,11 +50,11 @@ flutter:
   fonts:
   - family: Nunito
     fonts:
-      - asset: assets/fonts/Nunito-Bold.ttf
-      - asset: assets/fonts/Nunito-Light.ttf
-      - asset: assets/fonts/Nunito-LightItalic.ttf
-      - asset: assets/fonts/Nunito-Regular.ttf
-      - asset: assets/fonts/Nunito-SemiBold.ttf
+    - asset: assets/fonts/Nunito-Bold.ttf
+    - asset: assets/fonts/Nunito-Light.ttf
+    - asset: assets/fonts/Nunito-LightItalic.ttf
+    - asset: assets/fonts/Nunito-Regular.ttf
+    - asset: assets/fonts/Nunito-SemiBold.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
