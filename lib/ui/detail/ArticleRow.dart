@@ -1,7 +1,5 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_reader/Routes.dart';
 import 'package:news_reader/model/Article.dart';
 import 'package:news_reader/ui/NewsWebViewPage.dart';
 import 'package:timeago/timeago.dart';
