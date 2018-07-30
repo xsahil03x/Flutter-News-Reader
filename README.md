@@ -8,14 +8,6 @@ Its an mobile app to browse the News from different channels.
 This app uses an API provided by https://newsapi.org/. 
 </p>
 
-
-
-# Preview
-
-|  |
-| ------------------ |
-| <img src="./screenshot/Fluttery_Filmy.gif" height="400" alt="Screenshot"/>  |
-
 # Screenshot
 
 | Channel Screen | Article Screen |
