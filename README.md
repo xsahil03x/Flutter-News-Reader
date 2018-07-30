@@ -47,8 +47,8 @@ For help getting started with Flutter, view online
 #### 2. Clone the repo
 
 ```sh
-$ git clone https://github.com/xsahil03x/Flutter_news_reader.git
-$ cd Flutter_news_reader/
+$ git clone https://github.com/xsahil03x/Flutter-News-Reader.git
+$ cd Flutter-News-Reader/
 ```
 
 #### 4. Run the app
