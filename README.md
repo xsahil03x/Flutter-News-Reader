@@ -1,7 +1,15 @@
-# News Reader
-
- News app which is developed using flutter and powered by newsapi.org.
+  <p align="center">
+<img src="https://user-images.githubusercontent.com/25670178/43371999-c4a4ee3e-93b9-11e8-9912-87f4c219bd51.png"
+ </p>
  
+<h1 align="center">News Reader</h1>
+<p align="center">This app is made using the Flutter framework. 
+Its an mobile app to browse the News from different channels.
+This app uses an API provided by https://newsapi.org/. 
+</p>
+
+
+
 # Preview
 
 |  |
