@@ -82,6 +82,6 @@ class _HomePageState extends State<Home> {
             ),
             itemCount: news?.length,
             itemBuilder: (BuildContext context, int position) =>
-                NewsRow(news[position])),
+              news != null && news.length > position ? NewsRow(news[position]) : null),
       );
 }

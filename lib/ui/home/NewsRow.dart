@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:news_reader/model/IconsResponse.dart';
@@ -54,15 +55,16 @@ class _NewsRowState extends State<NewsRow> {
   @override
   Widget build(BuildContext context) {
     CircleAvatar channelLogo(var url) {
-      try {
-        return new CircleAvatar(
-          backgroundImage: new NetworkImage(icons[1].url),
-        );
-      } catch (Exception) {
-        return new CircleAvatar(
-          child: new Icon(Icons.library_books),
-        );
+      if (icons.isNotEmpty) {
+        try {
+            return new CircleAvatar(
+              backgroundImage: new CachedNetworkImageProvider(icons[1].url),
+            );
+        } catch (Exception) {}
       }
+      return new CircleAvatar(
+        child: new Icon(Icons.library_books),
+      );
     }
 
     final newsCard = Container(

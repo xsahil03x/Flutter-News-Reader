@@ -10,9 +10,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   json_annotation: ^0.2.3
   fluro: ^1.1.0
-  flutter_webview_plugin: ^0.1.6
+  flutter_webview_plugin: ^0.2.1+2
   timeago: ^1.2.0
-
+  cached_network_image: ^0.4.2
 
 dev_dependencies:
   flutter_test:
