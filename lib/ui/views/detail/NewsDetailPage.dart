@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:news_reader/model/Article.dart';
-import 'package:news_reader/model/ArticleResponse.dart';
-import 'package:news_reader/ui/detail/ArticleRow.dart';
+import 'package:news_reader/core/model/Article.dart';
+import 'package:news_reader/core/model/ArticleResponse.dart';
+import 'package:news_reader/ui/widgets/ArticleRow.dart';
 
 class NewsDetailPage extends StatefulWidget {
   final String id;
@@ -57,18 +57,16 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Nunito'),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text(channelName,style: TextStyle(
-              fontWeight: FontWeight.bold
-            ),),
-            backgroundColor: Colors.teal,
-          ),
-          body: makeBody(context),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          channelName,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.teal,
+      ),
+      body: makeBody(context),
+    );
   }
 
   Widget makeBody(BuildContext context) {
@@ -76,7 +74,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       color: Colors.black87,
       child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: articles?.length,
+          itemCount: articles?.length ?? 0,
           itemBuilder: (BuildContext context, int position) =>
               ArticleRow(articles[position])),
     );

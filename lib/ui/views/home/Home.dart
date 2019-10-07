@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'package:news_reader/model/News.dart';
-import 'package:news_reader/model/NewsResponse.dart';
-import 'package:news_reader/ui/home/NewsRow.dart';
+import 'package:news_reader/core/model/News.dart';
+import 'package:news_reader/core/model/NewsResponse.dart';
+import 'package:news_reader/ui/widgets/NewsRow.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -45,6 +45,7 @@ class _HomePageState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -66,12 +67,11 @@ class _HomePageState extends State<Home> {
           color: Colors.black87,
           child: makeGridView(context),
         ),
-        onRefresh: _getNewsApi,
+        onRefresh:_getNewsApi,
       );
 
   Widget makeGridView(BuildContext context) => Container(
-        padding:
-            EdgeInsets.only(bottom: 4.0, right: 2.0, left: 2.0),
+        padding: EdgeInsets.only(bottom: 4.0, right: 2.0, left: 2.0),
         child: GridView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
@@ -80,7 +80,7 @@ class _HomePageState extends State<Home> {
               mainAxisSpacing: 16.0,
               crossAxisSpacing: 4.0,
             ),
-            itemCount: news?.length,
+            itemCount: news?.length ?? 0,
             itemBuilder: (BuildContext context, int position) =>
                 NewsRow(news[position])),
       );

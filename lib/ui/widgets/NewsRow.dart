@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:news_reader/model/IconsResponse.dart';
-import 'package:news_reader/model/ChannelIcon.dart';
-import 'package:news_reader/model/News.dart';
-import 'package:news_reader/ui/detail/NewsDetailPage.dart';
+import 'package:news_reader/core/model/ChannelIcon.dart';
+import 'package:news_reader/core/model/IconsResponse.dart';
+import 'package:news_reader/core/model/News.dart';
+import 'package:news_reader/ui/views/detail/NewsDetailPage.dart';
+
 
 class NewsRow extends StatefulWidget {
   final News news;
@@ -36,6 +37,7 @@ class _NewsRowState extends State<NewsRow> {
         headers: {
           "Accept": "application/json",
         });
+
     if (response.statusCode == 200) {
       var jsonData = json.decode(response.body);
       IconsResponse iconsResponse = IconsResponse.fromJson(jsonData);
