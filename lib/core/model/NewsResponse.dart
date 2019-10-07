@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:news_reader/model/News.dart';
+import 'News.dart';
 
 part 'NewsResponse.g.dart';
 
