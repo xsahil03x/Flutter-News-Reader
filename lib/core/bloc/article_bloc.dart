@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:news_reader/core/api/article_api.dart';
+import 'package:news_reader/core/api/news/article_api.dart';
 import 'package:news_reader/core/model/Article.dart';
 import 'package:rxdart/rxdart.dart';
 
