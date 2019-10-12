@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:news_reader/core/bloc/article_bloc.dart';
 import 'package:news_reader/core/model/Article.dart';
-import 'package:news_reader/core/model/ArticleResponse.dart';
 import 'package:news_reader/ui/widgets/ArticleRow.dart';
 
 class NewsDetailPage extends StatefulWidget {
@@ -13,46 +12,22 @@ class NewsDetailPage extends StatefulWidget {
   const NewsDetailPage({Key key, this.id, this.channel}) : super(key: key);
 
   @override
-  _NewsDetailPageState createState() => _NewsDetailPageState(id, channel);
+  _NewsDetailPageState createState() => _NewsDetailPageState();
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
-  //News news;
-  String id;
-  String channelName;
-  List<Article> articles;
-
-  _NewsDetailPageState(String id, String channel) {
-    this.id = id;
-    this.channelName = channel;
-  }
+  final _bloc = BlocProvider.getBloc<ArticleBloc>();
 
   @override
   void initState() {
     super.initState();
-    _getArticlesApi();
+    Future.delayed(Duration.zero, () => _bloc.findArticles(widget.id));
   }
 
-  Future<Null> _getArticlesApi() async {
-    var response = await http.get(
-        Uri.encodeFull('https://newsapi.org/v2/top-headlines?sources=' + id),
-        headers: {
-          "Accept": "application/json",
-          "X-Api-Key": "a4b97f5dd7dd4798bfee7067a3ec323b"
-        });
-    if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      ArticleResponse articleResponse = ArticleResponse.fromJson(jsonData);
-
-      setState(() {
-        articles = articleResponse.articles;
-        print("Articles list size is: ${articles.length}");
-      });
-
-      return null;
-    } else {
-      throw Exception('Failed to load Articles');
-    }
+  @override
+  void dispose() {
+    _bloc.clearArticlesList();
+    super.dispose();
   }
 
   @override
@@ -60,7 +35,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          channelName,
+          widget.channel,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.teal,
@@ -72,11 +47,21 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   Widget makeBody(BuildContext context) {
     return Container(
       color: Colors.black87,
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: articles?.length ?? 0,
-          itemBuilder: (BuildContext context, int position) =>
-              ArticleRow(articles[position])),
+      child: StreamBuilder<List<Article>>(
+        stream: _bloc.articlesStream,
+        initialData: List(),
+        builder: (context, snapshot) {
+          final articles = snapshot.data;
+
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: articles.length,
+            itemBuilder: (BuildContext context, int position) {
+              return ArticleRow(articles[position]);
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:news_reader/core/bloc/article_bloc.dart';
 import 'package:news_reader/core/bloc/news_bloc.dart';
 
 import 'ui/views/home/Home.dart';
@@ -12,6 +13,7 @@ class NewsApp extends StatelessWidget {
     return BlocProvider(
       blocs: [
         Bloc((i) => NewsBloc()),
+        Bloc((i) => ArticleBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
