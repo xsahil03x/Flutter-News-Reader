@@ -1,9 +1,8 @@
-import 'dart:convert';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:news_reader/core/bloc/news_bloc.dart';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 import 'package:news_reader/core/model/News.dart';
-import 'package:news_reader/core/model/NewsResponse.dart';
 import 'package:news_reader/ui/widgets/NewsRow.dart';
 
 class Home extends StatefulWidget {
@@ -12,34 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomePageState extends State<Home> {
-  List<News> news;
+  final _bloc = BlocProvider.getBloc<NewsBloc>();
 
   @override
   void initState() {
     super.initState();
-    _getNewsApi();
-  }
 
-  Future<Null> _getNewsApi() async {
-    var response = await http.get(
-        Uri.encodeFull('https://newsapi.org/v2/sources?language=en'),
-        headers: {
-          "Accept": "application/json",
-          "X-Api-Key": "a4b97f5dd7dd4798bfee7067a3ec323b"
-        });
-    if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      NewsResponse newsResponse = NewsResponse.fromJson(jsonData);
-
-      setState(() {
-        news = newsResponse.news;
-        print("News list size is: ${news.length}");
-      });
-
-      return null;
-    } else {
-      throw Exception('Failed to load news');
-    }
+    Future.delayed(Duration.zero, _bloc.findNews);
   }
 
   @override
@@ -62,17 +40,26 @@ class _HomePageState extends State<Home> {
     );
   }
 
-  Widget makeBody(BuildContext context) => RefreshIndicator(
-        child: Container(
-          color: Colors.black87,
-          child: makeGridView(context),
-        ),
-        onRefresh:_getNewsApi,
-      );
+  Widget makeBody(BuildContext context) {
+    return RefreshIndicator(
+      child: Container(
+        color: Colors.black87,
+        child: makeGridView(context),
+      ),
+      onRefresh: _bloc.findNews,
+    );
+  }
 
-  Widget makeGridView(BuildContext context) => Container(
-        padding: EdgeInsets.only(bottom: 4.0, right: 2.0, left: 2.0),
-        child: GridView.builder(
+  Widget makeGridView(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(2.0, 0, 2.0, 4.0),
+      child: StreamBuilder<List<News>>(
+        stream: _bloc.newsStream,
+        initialData: List(),
+        builder: (context, snapshot) {
+          final news = snapshot.data;
+
+          return GridView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -80,8 +67,13 @@ class _HomePageState extends State<Home> {
               mainAxisSpacing: 16.0,
               crossAxisSpacing: 4.0,
             ),
-            itemCount: news?.length ?? 0,
-            itemBuilder: (BuildContext context, int position) =>
-                NewsRow(news[position])),
-      );
+            itemCount: news.length,
+            itemBuilder: (BuildContext context, int position) {
+              return NewsRow(news[position]);
+            },
+          );
+        },
+      ),
+    );
+  }
 }
