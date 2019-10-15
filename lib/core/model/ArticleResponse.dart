@@ -13,4 +13,7 @@ class ArticleResponse {
 
   factory ArticleResponse.fromJson(Map<String, dynamic> json) =>
       _$ArticleResponseFromJson(json);
+  
+  Map<String,dynamic> toJson() => _$ArticleResponseToJson(this);
+
 }

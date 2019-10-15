@@ -12,4 +12,6 @@ class IconsResponse{
 
   factory IconsResponse.fromJson(Map<String, dynamic> json) =>
       _$IconsResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$IconsResponseToJson(this);
+      
 }

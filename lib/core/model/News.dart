@@ -18,4 +18,6 @@ class News {
       this.category, this.url, this.icons);
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+  Map<String,dynamic> toJson() => _$NewsToJson(this);
+
 }

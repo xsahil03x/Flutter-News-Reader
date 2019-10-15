@@ -1,9 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:news_reader/core/model/ChannelIcon.dart';
-import 'package:news_reader/core/model/IconsResponse.dart';
 import 'package:news_reader/core/model/News.dart';
 import 'package:news_reader/presentation/views/detail/NewsDetailPage.dart';
 

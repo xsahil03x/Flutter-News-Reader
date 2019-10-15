@@ -1,4 +1,3 @@
-import 'package:news_reader/core/data/network/i_news_api.dart';
 import 'package:news_reader/core/data/repositories/news_repository.dart';
 import 'package:news_reader/core/model/ArticleResponse.dart';
 import 'package:news_reader/core/model/NewsResponse.dart';

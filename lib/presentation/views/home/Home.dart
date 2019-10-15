@@ -1,8 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'package:news_reader/core/model/News.dart';
 import 'package:news_reader/core/model/NewsResponse.dart';
 import 'package:news_reader/presentation/blocs/news_bloc.dart';
 import 'package:news_reader/presentation/widgets/NewsRow.dart';

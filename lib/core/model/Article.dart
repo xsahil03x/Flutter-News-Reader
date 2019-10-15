@@ -16,4 +16,6 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
+
+  Map<String,dynamic> toJson() => _$ArticleToJson(this);
 }
