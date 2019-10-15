@@ -7,23 +7,19 @@ part of 'ArticleResponse.dart';
 // **************************************************************************
 
 ArticleResponse _$ArticleResponseFromJson(Map<String, dynamic> json) {
-  return new ArticleResponse(
-      json['status'] as String,
-      json['totalResults'],
-      (json['articles'] as List)
-          ?.map((e) => e == null
-              ? null
-              : new Article.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+  return ArticleResponse(
+    json['status'] as String,
+    json['totalResults'],
+    (json['articles'] as List)
+        ?.map((e) =>
+            e == null ? null : Article.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
 }
 
-abstract class _$ArticleResponseSerializerMixin {
-  String get status;
-  dynamic get totalResults;
-  List<Article> get articles;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'status': status,
-        'totalResults': totalResults,
-        'articles': articles
-      };
-}
+Map<String, dynamic> _$ArticleResponseToJson(ArticleResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'totalResults': instance.totalResults,
+      'articles': instance.articles,
+    };

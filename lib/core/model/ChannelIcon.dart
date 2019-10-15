@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'ChannelIcon.g.dart';
 
 @JsonSerializable()
-class ChannelIcon extends Object with _$ChannelIconSerializerMixin {
+class ChannelIcon {
   String url;
   var height;
   var width;

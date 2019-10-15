@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'Article.g.dart';
 
 @JsonSerializable()
-class Article extends Object with _$ArticleSerializerMixin {
+class Article {
   String author;
   String title;
   String description;

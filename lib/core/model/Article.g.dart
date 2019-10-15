@@ -7,28 +7,21 @@ part of 'Article.dart';
 // **************************************************************************
 
 Article _$ArticleFromJson(Map<String, dynamic> json) {
-  return new Article(
-      json['author'] as String,
-      json['title'] as String,
-      json['description'] as String,
-      json['url'] as String,
-      json['urlToImage'] as String,
-      json['publishedAt'] as String);
+  return Article(
+    json['author'] as String,
+    json['title'] as String,
+    json['description'] as String,
+    json['url'] as String,
+    json['urlToImage'] as String,
+    json['publishedAt'] as String,
+  );
 }
 
-abstract class _$ArticleSerializerMixin {
-  String get author;
-  String get title;
-  String get description;
-  String get url;
-  String get urlToImage;
-  String get publishedAt;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'author': author,
-        'title': title,
-        'description': description,
-        'url': url,
-        'urlToImage': urlToImage,
-        'publishedAt': publishedAt
-      };
-}
+Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
+      'author': instance.author,
+      'title': instance.title,
+      'description': instance.description,
+      'url': instance.url,
+      'urlToImage': instance.urlToImage,
+      'publishedAt': instance.publishedAt,
+    };

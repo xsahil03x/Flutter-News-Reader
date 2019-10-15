@@ -4,7 +4,7 @@ import 'Article.dart';
 part 'ArticleResponse.g.dart';
 
 @JsonSerializable()
-class ArticleResponse extends Object with _$ArticleResponseSerializerMixin {
+class ArticleResponse {
   String status;
   var totalResults;
   List<Article> articles;

@@ -7,21 +7,20 @@ part of 'ChannelIcon.dart';
 // **************************************************************************
 
 ChannelIcon _$ChannelIconFromJson(Map<String, dynamic> json) {
-  return new ChannelIcon(json['url'] as String, json['height'], json['width'],
-      json['format'] as String, json['error']);
+  return ChannelIcon(
+    json['url'] as String,
+    json['height'],
+    json['width'],
+    json['format'] as String,
+    json['error'],
+  );
 }
 
-abstract class _$ChannelIconSerializerMixin {
-  String get url;
-  dynamic get height;
-  dynamic get width;
-  String get format;
-  Object get error;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'url': url,
-        'height': height,
-        'width': width,
-        'format': format,
-        'error': error
-      };
-}
+Map<String, dynamic> _$ChannelIconToJson(ChannelIcon instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'height': instance.height,
+      'width': instance.width,
+      'format': instance.format,
+      'error': instance.error,
+    };
