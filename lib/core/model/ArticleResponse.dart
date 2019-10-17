@@ -4,7 +4,7 @@ import 'Article.dart';
 part 'ArticleResponse.g.dart';
 
 @JsonSerializable()
-class ArticleResponse extends Object with _$ArticleResponseSerializerMixin {
+class ArticleResponse {
   String status;
   var totalResults;
   List<Article> articles;
@@ -13,4 +13,7 @@ class ArticleResponse extends Object with _$ArticleResponseSerializerMixin {
 
   factory ArticleResponse.fromJson(Map<String, dynamic> json) =>
       _$ArticleResponseFromJson(json);
+  
+  Map<String,dynamic> toJson() => _$ArticleResponseToJson(this);
+
 }

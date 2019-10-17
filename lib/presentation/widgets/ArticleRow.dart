@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_reader/core/model/Article.dart';
-import 'package:news_reader/ui/views/webview/NewsWebViewPage.dart';
+import 'package:news_reader/presentation/views/webview/NewsWebViewPage.dart';
 
 import 'package:timeago/timeago.dart';
 

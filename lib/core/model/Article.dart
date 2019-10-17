@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'Article.g.dart';
 
 @JsonSerializable()
-class Article extends Object with _$ArticleSerializerMixin {
+class Article {
   String author;
   String title;
   String description;
@@ -16,4 +16,6 @@ class Article extends Object with _$ArticleSerializerMixin {
 
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
+
+  Map<String,dynamic> toJson() => _$ArticleToJson(this);
 }

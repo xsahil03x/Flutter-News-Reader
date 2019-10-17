@@ -1,0 +1,23 @@
+on: [push, pull_request]
+name: Test and Build Apk
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Run analyzer
+        run: flutter analyze .
+      - name: Run tests
+        run: flutter test
+      # Building APK to ensure that the changes didn't break the existing code
+      - name: Build apk
+        run: flutter build apk --release --split-per-abi

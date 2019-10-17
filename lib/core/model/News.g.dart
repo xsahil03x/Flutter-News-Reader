@@ -7,31 +7,28 @@ part of 'News.dart';
 // **************************************************************************
 
 News _$NewsFromJson(Map<String, dynamic> json) {
-  return new News(
-      json['country'] as String,
-      json['name'] as String,
-      json['description'] as String,
-      json['language'] as String,
-      json['id'] as String,
-      json['category'] as String,
-      json['url'] as String);
+  return News(
+    json['country'] as String,
+    json['name'] as String,
+    json['description'] as String,
+    json['language'] as String,
+    json['id'] as String,
+    json['category'] as String,
+    json['url'] as String,
+    (json['icons'] as List)
+        ?.map((e) =>
+            e == null ? null : ChannelIcon.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
 }
 
-abstract class _$NewsSerializerMixin {
-  String get country;
-  String get name;
-  String get description;
-  String get language;
-  String get id;
-  String get category;
-  String get url;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'country': country,
-        'name': name,
-        'description': description,
-        'language': language,
-        'id': id,
-        'category': category,
-        'url': url
-      };
-}
+Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
+      'country': instance.country,
+      'name': instance.name,
+      'description': instance.description,
+      'language': instance.language,
+      'id': instance.id,
+      'category': instance.category,
+      'url': instance.url,
+      'icons': instance.icons,
+    };

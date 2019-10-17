@@ -4,7 +4,7 @@ import 'ChannelIcon.dart';
 part 'IconsResponse.g.dart';
 
 @JsonSerializable()
-class IconsResponse extends Object with _$IconsResponseSerializerMixin {
+class IconsResponse{
   String url;
   List<ChannelIcon> icons;
 
@@ -12,4 +12,6 @@ class IconsResponse extends Object with _$IconsResponseSerializerMixin {
 
   factory IconsResponse.fromJson(Map<String, dynamic> json) =>
       _$IconsResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$IconsResponseToJson(this);
+      
 }

@@ -7,17 +7,17 @@ part of 'NewsResponse.dart';
 // **************************************************************************
 
 NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) {
-  return new NewsResponse(
-      json['status'] as String,
-      (json['sources'] as List)
-          ?.map((e) =>
-              e == null ? null : new News.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+  return NewsResponse(
+    json['status'] as String,
+    (json['sources'] as List)
+        ?.map(
+            (e) => e == null ? null : News.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
 }
 
-abstract class _$NewsResponseSerializerMixin {
-  String get status;
-  List<News> get news;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'status': status, 'sources': news};
-}
+Map<String, dynamic> _$NewsResponseToJson(NewsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'sources': instance.news,
+    };
